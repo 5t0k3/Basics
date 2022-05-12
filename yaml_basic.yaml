@@ -1,0 +1,52 @@
+# comment
+# object
+microservice:
+  # attributes below
+  app: user-auth
+  port: 9000
+  deploy: true
+  # list, "-" or [...]
+  stack:
+  - dev
+  - stage
+  - prod
+  # 2nd list with indentation
+  region:
+    - us-east
+    - us-west
+  # 3rd list with primitive values
+  version: [1.0, 2.0, 3.0]
+  # multiline string #1. "|" interpretes multi-line of strings into multi lines
+  MultilineString: |
+    1st line is here
+    2nd line
+    3rd line
+  # multiline string #2. ">" interpretes multi-line of strings into a single line
+  LongSingleLineString: >
+    begin of the string,
+    middle of the string,
+    end of the string.
+  # environment variable
+  password: $MYSQL_ROOT_PASSWORD
+  # placeholder, {{ ... }}
+  metadata:
+    name: {{ .Values.service.name }}
+  
+  # multiple yaml components in one yaml file, separate with "---"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tully
+
+---
+apiVersion: v1.1
+kind: Secret
+metadata:
+  name: tully-secret-file
+
+
+
+ 
+  
+
